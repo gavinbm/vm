@@ -1,5 +1,6 @@
 import sys, os
 
+# input and file stuff, it's boring
 argv = sys.argv
 argc = len(argv)
 
@@ -23,10 +24,23 @@ if not os.path.isfile(f_in):
 with open(f_in) as f:
     text = f.readlines()
 
+# first pass we'll get our labels, their names and addresses
+class Label:
+    def __init__(self, name, addr):
+        self.name = name
+        self.addr = addr
+
+labels = []
+for i in range(0, len(text)):
+    if text[i][0] == ".":
+        labels.append(Label(text[i]), i * 3)
+
+# now we can actually start translating our instructions
 for i in range(0, len(text)):
     line = text[i].strip("\n").replace(",", "")
     line = line.split(" ")
     
+    # kinda lame way to do this but it's easy to read/understand
     if line[0].lower() == "hlt":
         b = [0b0000, 0b0000, 0b0000, 0b0000]
     elif line[0].lower() == "add":
@@ -88,3 +102,5 @@ for i in range(0, len(text)):
     elif line[0].lower() == "jump":
         rx, a = int(line[1][1:]), int(line[2])
         b = [0b1111, rx, a, 0b0000]
+    
+    print(b)
