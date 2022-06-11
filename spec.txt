@@ -1,0 +1,28 @@
+harvard architecture
+data and program memory are separate
+load one program at a time (for now, might change later)
+
+registers:
+a - h  : general purpose
+s      : stack pointer
+p      : program counter
+q      : link register (this holds p value for ret) 
+r      : register for flags
+
+instructions - 16 bit instruction width
+tag    opcode   result
+
+halt    0000     stop
+add     0001     rx = rx + ry 
+sub     0010     rx = rx - ry
+mul     0011     rx = rx * ry
+or      0100     rx = rx | ry
+and     0101     rx = rx & ry
+not     0110     rx = ~rx
+shl     0111     rx = rx << ry
+shr     1000     rx = rx >> ry
+mvi     1001     rx = v
+load    1010     rx = a
+store   1011     a = rx
+cmp     1100     set flags
+jnz     1101     jump if not 0

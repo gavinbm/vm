@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
+#include <stdint.h>
 
-int main(char **argv, int argc) {
-    return 0;
+
+int main(int argc, char **argv) {
+   printf("%ld\n", sizeof(short));
+   return 0;
 }
